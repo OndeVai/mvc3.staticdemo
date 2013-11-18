@@ -5,6 +5,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace Web.Consumer
@@ -31,6 +32,22 @@ namespace Web.Consumer
 
         }
 
+        public static void RegisterBundles(BundleCollection bundles)
+        {
+            bundles.UseCdn = true;
+           // BundleTable.EnableOptimizations = true;
+
+            //CSS
+            var styles = new StyleBundle("~/Content/bundledcss").Include("~/Content/site.css");
+
+            //JS
+            var js = new ScriptBundle("~/bundles/jquery", "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js");
+            
+            bundles.Add(styles);
+            bundles.Add(js);
+           
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -40,6 +57,7 @@ namespace Web.Consumer
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            RegisterBundles(BundleTable.Bundles);
         }
     }
 }

@@ -19,3 +19,7 @@ C:\_dev_learning\mvc3.staticdemo\Web.Consumer\bin\System.Web.WebPages.Razor.xml
 C:\_dev_learning\mvc3.staticdemo\Web.Consumer\obj\Debug\Web.Consumer.csprojResolveAssemblyReference.cache
 C:\_dev_learning\mvc3.staticdemo\Web.Consumer\obj\Debug\Web.Consumer.dll
 C:\_dev_learning\mvc3.staticdemo\Web.Consumer\obj\Debug\Web.Consumer.pdb
+C:\_dev_learning\mvc3.staticdemo\Web.Consumer\bin\Antlr3.Runtime.dll
+C:\_dev_learning\mvc3.staticdemo\Web.Consumer\bin\System.Web.Optimization.dll
+C:\_dev_learning\mvc3.staticdemo\Web.Consumer\bin\Web.Optimization.dll
+C:\_dev_learning\mvc3.staticdemo\Web.Consumer\bin\WebGrease.dll
