@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/MsBuild/2003">
+
+  <UsingTask TaskName="CssCompressorTask" AssemblyFile="..\ControlBin-Externals\Yahoo.Yui.Compressor.Build.MsBuild.dll" />
+  <UsingTask TaskName="JavaScriptCompressorTask" AssemblyFile="..\ControlBin-Externals\Yahoo.Yui.Compressor.Build.MsBuild.dll" />
+
+
+  <!-- 
+      ****************************************************************************************************************************************
+      ******  Please refer to the official documentation for the full list of options: http://yuicompressor.codeplex.com/documentation  ******  
+      ****************************************************************************************************************************************
+  -->
+
+  <Target Name="Compile">
+
+    <PropertyGroup>
+      <RootProjPath>$(MSBuildProjectDirectory)</RootProjPath>
+      <RootProjPathJs>$(RootProjpath)\Scripts\</RootProjPathJs>
+      <RootProjPathCss>$(RootProjpath)\Content\</RootProjPathCss>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <FilesToDelete Include="$(RootProjPathCss)**\*.min*" />
+      <FilesToDelete Include="$(RootProjPathJs)**\*.min*" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+
+    <ItemGroup>
+      <!-- Single files, listed in order of dependency -->
+      <CssFiles Include="$(RootProjPathCss)**\*.css"/>
+      <JsFiles Include="$(RootProjPathJs)**\*.js"/>
+    </ItemGroup>
+
+    <CssCompressorTask
+              SourceFiles="@(CssFiles)"
+              DeleteSourceFiles="false"
+              OutputFile="$(RootProjPathCss)%(CssFiles.RecursiveDir)%(CssFiles.Filename).min%(CssFiles.Extension)"
+              LoggingType="Info"
+              PreserveComments="false"
+      />
+
+    <JavaScriptCompressorTask
+        SourceFiles="@(JsFiles)"
+            DeleteSourceFiles="false"
+            OutputFile="$(RootProjPathJs)%(JsFiles.RecursiveDir)%(JsFiles.Filename).min%(JsFiles.Extension)"
+            LoggingType="Info" />
+
+  </Target>
+</Project>
